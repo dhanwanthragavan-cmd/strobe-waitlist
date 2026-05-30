@@ -1,4 +1,4 @@
-const BASE_COUNT = 847;
+const BASE_COUNT = 0;
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
