@@ -223,24 +223,21 @@
   .conf{position:absolute;width:9px;height:14px;border-radius:2px;will-change:transform,opacity}
 
   /* ---------- responsive ---------- */
-  .btn-short{display:none}
   @media(max-width:760px){
     .stage{margin-top:32px;min-height:auto}
-    .submit.done{width:60px}
     nav .nav-cta{display:none}
     footer{flex-direction:column;align-items:center;text-align:center;gap:14px}
     .copy{margin-top:0}
+    /* stack form vertically — full-width pills look great and always fit */
+    form{flex-direction:column;gap:10px;max-width:100%}
+    .email-inp{width:100%;flex:none;font-size:16px}
+    .submit{width:100%;min-width:unset}
+    .submit.done{width:60px;margin:0 auto}
   }
   @media(max-width:480px){
     .proof{flex-direction:column;gap:8px}
     .kicker .rule{display:none}
     .kicker{gap:0}
-    /* swap to short label so button fits side-by-side on narrow screens */
-    .btn-full{display:none}
-    .btn-short{display:inline}
-    .submit{min-width:72px;padding:0 20px;font-size:15px}
-    /* prevent iOS zoom on input focus */
-    .email-inp{font-size:16px}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation-duration:.001ms!important;transition-duration:.2s!important}
@@ -328,7 +325,7 @@
         <form id="wl-form" class="reveal" novalidate>
           <input class="email-inp" id="email-inp" type="email" placeholder="your@email.com" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" required />
           <button class="submit" id="submit-btn" type="submit">
-            <span class="label"><span class="btn-full">Get early access</span><span class="btn-short">Join</span></span>
+            <span class="label">Get early access</span>
             <svg class="check" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-11" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="sent-msg">
