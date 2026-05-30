@@ -18,7 +18,6 @@
     --ios-blue:#0a84ff;
     --glass:rgba(255,255,255,.045);
     --glass-brd:rgba(255,255,255,.10);
-    --shadow:0 40px 120px -20px rgba(0,0,0,.7);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -66,7 +65,7 @@
 
   /* ---------- hero ---------- */
   .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-        text-align:center;padding:110px clamp(20px,5vw,40px) 40px}
+        text-align:center;padding:110px clamp(20px,5vw,40px) 20px}
   .kicker{display:inline-flex;align-items:center;justify-content:center;gap:16px;font-size:12px;font-weight:600;
           letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.52)}
   .kicker .kt{white-space:nowrap}
@@ -81,19 +80,17 @@
   .word{display:inline-block;opacity:0;transform:translateY(40px);filter:blur(6px)}
   .word.in{opacity:1;transform:none;filter:none;transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease}
 
-  .subhead{margin-top:22px;font-size:clamp(13px,1.5vw,16.5px);color:var(--muted);font-weight:400;
-           letter-spacing:.06em}
+  .subhead{margin-top:22px;font-size:clamp(13px,1.5vw,16.5px);color:var(--muted);font-weight:400;letter-spacing:.06em}
   .subhead b{color:rgba(255,255,255,.82);font-weight:600}
 
   /* ---------- phone stage ---------- */
-  .stage{position:relative;margin-top:48px;width:100%;display:flex;align-items:flex-start;justify-content:center;min-height:600px}
+  .stage{position:relative;margin-top:44px;width:100%;display:flex;align-items:flex-start;justify-content:center;min-height:600px}
   .phone-glow{position:absolute;width:520px;height:520px;border-radius:50%;
               background:radial-gradient(circle,rgba(124,92,255,.30),rgba(90,168,255,.10) 45%,transparent 70%);
-              filter:blur(50px);z-index:0;animation:glowpulse 6s ease-in-out infinite;
-              top:50px;left:50%;transform:translateX(-50%)}
+              filter:blur(50px);z-index:0;top:50px;left:50%;transform:translateX(-50%);
+              animation:glowpulse 6s ease-in-out infinite}
   @keyframes glowpulse{0%,100%{opacity:.8;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
 
-  /* phone sizer: scales phone to fit small screens */
   .phone-sizer{display:inline-block;line-height:0;transform-origin:top center;position:relative;z-index:5}
 
   .phone{width:312px;height:680px;border-radius:54px;
@@ -118,51 +115,60 @@
           background:linear-gradient(180deg,#0c0c11,#08080b);display:flex;flex-direction:column}
   .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:104px;height:30px;
          background:#000;border-radius:18px;z-index:10}
-  .statusbar{display:flex;justify-content:space-between;align-items:center;padding:13px 24px 4px;font-size:13px;
-             font-weight:600;color:#fff;z-index:8}
+
+  /* status bar */
+  .statusbar{display:flex;justify-content:space-between;align-items:center;padding:14px 24px 6px;
+             font-size:13px;font-weight:600;color:#fff;z-index:8;flex-shrink:0}
   .statusbar .ic{display:flex;gap:5px;align-items:center}
   .statusbar svg{display:block}
-  .chat-head{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0 9px;
-             border-bottom:.5px solid rgba(255,255,255,.07);position:relative}
-  .chat-head .avatars{display:flex}
-  .chat-head .av{width:29px;height:29px;border-radius:50%;border:2px solid #0a0a0e;margin-left:-8px;
-                 display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
-  .chat-head .av:first-child{margin-left:0}
-  .chat-head .name{font-size:13px;font-weight:600;color:#fff;letter-spacing:-.01em}
-  .chat-head .sub{font-size:10.5px;color:var(--faint)}
-  .chat-head .back{position:absolute;left:16px;top:10px;color:var(--ios-blue)}
 
-  .msgs{flex:1;overflow:hidden;padding:13px 14px 14px;display:flex;flex-direction:column;gap:3px}
-  .row{display:flex;flex-direction:column;max-width:78%;opacity:0;transform:translateY(12px) scale(.9);
+  /* chat header — clean, properly spaced */
+  .chat-head{display:flex;flex-direction:column;align-items:center;gap:7px;
+             padding:10px 40px 13px;
+             border-bottom:.5px solid rgba(255,255,255,.08);position:relative;flex-shrink:0}
+  .chat-head .back{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--ios-blue);
+                   display:flex;align-items:center;gap:2px;font-size:13px;font-weight:500;line-height:1}
+  .chat-head .back svg{display:block}
+  .chat-head .avatars{display:flex;align-items:center}
+  .chat-head .av{width:32px;height:32px;border-radius:50%;border:2.5px solid #0a0a0e;margin-left:-9px;
+                 display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+  .chat-head .av:first-child{margin-left:0}
+  .chat-head .name{font-size:14px;font-weight:600;color:#fff;letter-spacing:-.015em;line-height:1}
+  .chat-head .sub{font-size:11px;color:var(--faint);line-height:1}
+
+  /* messages — justify-content:flex-end pushes messages to bottom like real iMessage */
+  .msgs{flex:1;overflow:hidden;padding:14px 14px 12px;display:flex;flex-direction:column;
+        gap:3px;justify-content:flex-end}
+  .row{display:flex;flex-direction:column;max-width:80%;opacity:0;transform:translateY(12px) scale(.9);
        transform-origin:left bottom}
   .row.show{animation:pop .5s cubic-bezier(.34,1.56,.64,1) forwards}
   .row.me{align-self:flex-end;align-items:flex-end;transform-origin:right bottom}
   .row.you{align-self:flex-start;align-items:flex-start}
   @keyframes pop{to{opacity:1;transform:none}}
-  .sender{font-size:9.5px;font-weight:600;margin:5px 0 2px 12px;letter-spacing:.01em}
-  .bubble{font-size:13px;line-height:1.28;padding:7px 12px;border-radius:18px;color:#fff;letter-spacing:-.005em}
-  .you .bubble{background:#26262d;border-bottom-left-radius:5px}
+  .sender{font-size:10px;font-weight:600;margin:6px 0 3px 12px;letter-spacing:.01em;opacity:.75}
+  .bubble{font-size:13.5px;line-height:1.32;padding:8px 13px;border-radius:18px;color:#fff;letter-spacing:-.005em}
+  .you .bubble{background:#2a2a33;border-bottom-left-radius:5px}
   .me .bubble{background:var(--ios-blue);border-bottom-right-radius:5px}
-  .row.gap{margin-top:5px}
-  .typing{align-self:flex-start;background:#26262d;border-radius:18px;border-bottom-left-radius:5px;
-          padding:11px 14px;display:flex;gap:4px;opacity:0;transform:translateY(12px) scale(.9);transform-origin:left bottom}
+  .row.gap{margin-top:6px}
+
+  /* typing indicator */
+  .typing{align-self:flex-start;background:#2a2a33;border-radius:18px;border-bottom-left-radius:5px;
+          padding:12px 15px;display:flex;gap:5px;margin-top:6px;
+          opacity:0;transform:translateY(12px) scale(.9);transform-origin:left bottom}
   .typing.show{animation:pop .4s cubic-bezier(.34,1.56,.64,1) forwards}
   .typing span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.45);animation:blink 1.3s infinite}
-  .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+  .typing span:nth-child(2){animation-delay:.22s}
+  .typing span:nth-child(3){animation-delay:.44s}
   @keyframes blink{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
-  .strobe-msg{align-self:center;margin:10px 0 2px;opacity:0;transform:translateY(14px) scale(.9)}
-  .strobe-msg.show{animation:pop .55s cubic-bezier(.34,1.56,.64,1) forwards}
-  .strobe-pill{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:100px;
-    background:linear-gradient(105deg,#7c5cff,#5aa8ff);color:#fff;font-weight:700;font-size:14px;letter-spacing:-.01em;
-    box-shadow:0 10px 30px -8px rgba(124,92,255,.7),inset 0 1px 0 rgba(255,255,255,.4)}
-  .strobe-pill svg{display:block}
-  .inputbar{display:flex;align-items:center;gap:8px;padding:9px 14px 14px}
-  .inputbar .field{flex:1;height:34px;border-radius:100px;border:1px solid rgba(255,255,255,.14);
-                   display:flex;align-items:center;padding:0 14px;font-size:12.5px;color:var(--faint)}
+
+  /* input bar */
+  .inputbar{display:flex;align-items:center;gap:8px;padding:10px 14px 16px;flex-shrink:0}
+  .inputbar .field{flex:1;height:36px;border-radius:100px;border:1px solid rgba(255,255,255,.14);
+                   display:flex;align-items:center;padding:0 14px;font-size:13px;color:var(--faint)}
 
   /* ---------- waitlist ---------- */
-  section{padding:clamp(80px,12vh,160px) clamp(20px,5vw,40px);position:relative}
-  #waitlist{padding-top:clamp(40px,6vh,80px)}
+  section{padding:clamp(60px,10vh,120px) clamp(20px,5vw,40px);position:relative}
+  #waitlist{padding-top:clamp(24px,3vh,44px)}
   .wl{text-align:center;max-width:680px;margin:0 auto}
   .wl h2{font-size:clamp(56px,15vw,170px);font-weight:900;letter-spacing:-.05em;line-height:.9;color:#fff}
   .wl .sub{margin-top:18px;font-size:clamp(14px,1.8vw,18px);color:var(--muted);line-height:1.5}
@@ -204,22 +210,6 @@
   .proof .txt{font-size:13.5px;color:var(--muted)}
   .proof .txt b{color:#fff;font-weight:700}
 
-  /* ---------- how it works ---------- */
-  #how{padding-top:clamp(60px,10vh,120px)}
-  .steps-wrap{max-width:900px;margin:0 auto}
-  .steps-wrap h2{font-size:clamp(32px,6vw,60px);font-weight:900;letter-spacing:-.04em;color:#fff;
-                 text-align:center;margin-bottom:clamp(40px,7vh,72px)}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,48px)}
-  .step{position:relative;padding:clamp(24px,4vw,36px);
-        background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.015));
-        border:1px solid var(--glass-brd);border-radius:20px;
-        backdrop-filter:blur(12px)}
-  .step::before{content:attr(data-n);position:absolute;top:-20px;left:clamp(20px,3vw,28px);
-                font-size:clamp(56px,8vw,90px);font-weight:900;letter-spacing:-.05em;color:rgba(255,255,255,.06);
-                line-height:1;pointer-events:none;user-select:none}
-  .step h3{font-size:clamp(17px,2vw,22px);font-weight:700;color:#fff;letter-spacing:-.03em;margin-bottom:10px}
-  .step p{font-size:clamp(13px,1.4vw,15px);color:var(--muted);line-height:1.6}
-
   /* ---------- footer ---------- */
   footer{border-top:1px solid rgba(255,255,255,.07);padding:28px clamp(20px,5vw,64px);
          display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;z-index:2}
@@ -237,19 +227,17 @@
 
   /* ---------- responsive ---------- */
   @media(max-width:760px){
-    .stage{margin-top:36px;min-height:auto}
+    .stage{margin-top:32px;min-height:auto}
     form{flex-direction:column;gap:8px}
     .submit{width:100%;min-width:unset}
     .submit.done{width:60px;margin:0 auto}
     nav .nav-cta{display:none}
-    .steps{grid-template-columns:1fr}
-    .step{padding:clamp(20px,4vw,28px) clamp(20px,4vw,28px) clamp(20px,4vw,28px) clamp(20px,4vw,28px)}
   }
   @media(max-width:480px){
     .proof{flex-direction:column;gap:8px}
   }
   @media(prefers-reduced-motion:reduce){
-    *{animation-duration:.001s!important;transition-duration:.2s!important}
+    *{animation-duration:.001ms!important;transition-duration:.2s!important}
   }
 </style>
 </head>
@@ -296,14 +284,16 @@
                 </span>
               </div>
               <div class="chat-head">
-                <svg class="back" width="11" height="18" viewBox="0 0 11 18" fill="none"><path d="M9 1L2 9l7 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="back">
+                  <svg width="9" height="16" viewBox="0 0 9 16" fill="none"><path d="M7.5 1.5L1.5 8l6 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
                 <div class="avatars">
                   <div class="av" style="background:linear-gradient(135deg,#ff7eb3,#ff5a7a)">Z</div>
                   <div class="av" style="background:linear-gradient(135deg,#5aa8ff,#3a6dff)">J</div>
                   <div class="av" style="background:linear-gradient(135deg,#a78bff,#7c5cff)">M</div>
                 </div>
                 <div class="name">the squad</div>
-                <div class="sub">Zara, Jake, Maya, you</div>
+                <div class="sub">Zara, Jake, Maya &amp; you</div>
               </div>
               <div class="msgs" id="msgs">
                 <div class="row you" data-d="0"><span class="sender" style="color:#ff7eb3">Zara</span><div class="bubble">omg last night was so good who has the photos</div></div>
@@ -313,11 +303,6 @@
                 <div class="row me gap" data-d="3300"><div class="bubble">why does this always take forever</div></div>
                 <div class="row you gap" data-d="4100"><span class="sender" style="color:#a78bff">Maya</span><div class="bubble">we never end up posting anything 😭</div></div>
                 <div class="typing" id="typing" data-d="5000"><span></span><span></span><span></span></div>
-                <div class="strobe-msg" id="strobeMsg" data-d="5900">
-                  <span class="strobe-pill">Try Strobe
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                </div>
               </div>
               <div class="inputbar">
                 <div class="field">iMessage</div>
@@ -359,27 +344,6 @@
       </div>
     </section>
 
-    <!-- how it works -->
-    <section id="how">
-      <div class="steps-wrap">
-        <h2 class="reveal">How it works.</h2>
-        <div class="steps">
-          <div class="step reveal" data-n="1">
-            <h3>Drop your photos</h3>
-            <p>Everyone uploads from their camera roll. No more airdropping 200 photos in a group chat.</p>
-          </div>
-          <div class="step reveal" data-n="2">
-            <h3>Vote in seconds</h3>
-            <p>Smart stacks collapse 200 photos into 30 quick decisions. Swipe, tap, done.</p>
-          </div>
-          <div class="step reveal" data-n="3">
-            <h3>Get the best shots</h3>
-            <p>The group's top picks rise to the top, ready to post — no debate required.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <footer>
       <a href="#" class="wordmark" aria-label="Strobe">str<svg class="wm-cam" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1.5" y="9" width="33" height="24" rx="5" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><rect x="12" y="2" width="13" height="9" rx="2.5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="18" cy="21" r="7.5" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="18" cy="21" r="2.5" fill="currentColor"/></svg>be</a>
       <div class="foot-mid"><a href="#">strobeapp.vercel.app</a></div>
@@ -394,7 +358,11 @@
   <div class="confetti" id="confetti"></div>
 
 <script>
-  // ---- phone scaling: fit to viewport on small screens ----
+  // Always start at top on load/refresh
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.scrollTo(0, 0);
+
+  // ---- phone scaling: fit small screens ----
   function scalePhone() {
     var sizer = document.querySelector('.phone-sizer');
     if (!sizer) return;
@@ -434,13 +402,11 @@
   function runChat() {
     var msgs = Array.from(document.querySelectorAll('#msgs .row'));
     var typing = document.getElementById('typing');
-    var strobe = document.getElementById('strobeMsg');
-    var all = msgs.concat([typing, strobe]);
+    var all = msgs.concat([typing]);
     all.forEach(function(el) {
       var d = parseInt(el.dataset.d || 0, 10);
       setTimeout(function() {
         el.classList.add('show');
-        if (el === strobe) typing.style.display = 'none';
         var m = document.getElementById('msgs');
         m.scrollTop = m.scrollHeight;
       }, d);
@@ -479,37 +445,26 @@
   var errMsg = document.getElementById('err-msg');
   var BASE = 847;
 
-  // Load real count from API (falls back to localStorage on local dev)
   async function loadCount() {
     try {
       var r = await fetch('/api/count', { cache: 'no-store' });
       if (r.ok) {
         var data = await r.json();
-        if (typeof data.count === 'number') {
-          countEl.textContent = data.count.toLocaleString();
-          return;
-        }
+        if (typeof data.count === 'number') { countEl.textContent = data.count.toLocaleString(); return; }
       }
     } catch (_) {}
-    // Fallback: localStorage
     var extra = parseInt(localStorage.getItem('strobe_extra') || '0', 10) || 0;
     countEl.textContent = (BASE + extra).toLocaleString();
   }
   loadCount();
 
-  // Restore joined state
   if (localStorage.getItem('strobe_joined') === '1') {
     submitBtn.classList.add('done');
     form.classList.add('sent');
   }
 
-  function showErr(msg) {
-    errMsg.textContent = msg;
-    errMsg.classList.add('show');
-  }
-  function hideErr() {
-    errMsg.classList.remove('show');
-  }
+  function showErr(msg) { errMsg.textContent = msg; errMsg.classList.add('show'); }
+  function hideErr() { errMsg.classList.remove('show'); }
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -527,7 +482,8 @@
     submitBtn.disabled = true;
     submitBtn.querySelector('.label').textContent = '...';
 
-    var newCount = parseInt(countEl.textContent.replace(/[^0-9]/g, ''), 10) + 1;
+    var currentCount = parseInt(countEl.textContent.replace(/[^0-9]/g, ''), 10);
+    var newCount = currentCount + 1;
 
     try {
       var r = await fetch('/api/join', {
@@ -536,20 +492,14 @@
         body: JSON.stringify({ email: email })
       });
       var data = await r.json();
-      if (typeof data.count === 'number') {
-        newCount = data.count;
-      }
-      if (data.error && data.error !== 'already_joined') {
-        throw new Error(data.error);
-      }
-    } catch (err) {
-      // API unavailable — optimistic local update
+      if (typeof data.count === 'number') { newCount = data.count; }
+    } catch (_) {
       var extra = parseInt(localStorage.getItem('strobe_extra') || '0', 10) || 0;
       localStorage.setItem('strobe_extra', String(extra + 1));
     }
 
     localStorage.setItem('strobe_joined', '1');
-    animateCount(parseInt(countEl.textContent.replace(/[^0-9]/g, ''), 10), newCount);
+    animateCount(currentCount, newCount);
     submitBtn.classList.add('done');
     submitBtn.disabled = false;
     setTimeout(function() { form.classList.add('sent'); burst(); }, 220);
