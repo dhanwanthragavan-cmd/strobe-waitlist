@@ -19,7 +19,8 @@
     --glass:rgba(255,255,255,.045);
     --glass-brd:rgba(255,255,255,.10);
   }
-  *{box-sizing:border-box;margin:0;padding:0}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  a,button{touch-action:manipulation}
   html{scroll-behavior:smooth}
   body{
     background:var(--bg);
@@ -107,9 +108,6 @@
   .phone.in{opacity:1;transform:none}
   .phone .floaty{position:absolute;inset:0;animation:float 6.5s ease-in-out infinite}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-  .phone::after{content:"";position:absolute;inset:0;border-radius:54px;pointer-events:none;
-    background:linear-gradient(135deg,rgba(255,255,255,.16),transparent 22%,transparent 78%,rgba(255,255,255,.06));
-    mix-blend-mode:screen}
 
   .screen{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;
           background:linear-gradient(180deg,#0c0c11,#08080b);display:flex;flex-direction:column}
@@ -137,8 +135,7 @@
   .chat-head .sub{font-size:11px;color:var(--faint);line-height:1}
 
   /* messages — justify-content:flex-end pushes messages to bottom like real iMessage */
-  .msgs{flex:1;overflow:hidden;padding:14px 14px 12px;display:flex;flex-direction:column;
-        gap:3px;justify-content:flex-end}
+  .msgs{flex:1;overflow:hidden;padding:14px 14px 12px;display:flex;flex-direction:column;gap:3px}
   .row{display:flex;flex-direction:column;max-width:80%;opacity:0;transform:translateY(12px) scale(.9);
        transform-origin:left bottom}
   .row.show{animation:pop .5s cubic-bezier(.34,1.56,.64,1) forwards}
@@ -232,9 +229,16 @@
     .submit{width:100%;min-width:unset}
     .submit.done{width:60px;margin:0 auto}
     nav .nav-cta{display:none}
+    footer{flex-direction:column;align-items:center;text-align:center;gap:14px}
+    .copy{margin-top:0}
   }
   @media(max-width:480px){
     .proof{flex-direction:column;gap:8px}
+    /* hide kicker rules so text doesn't overflow on narrow screens */
+    .kicker .rule{display:none}
+    .kicker{gap:0}
+    /* prevent iOS zoom on input focus (needs ≥16px) */
+    .email-inp{font-size:16px}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation-duration:.001ms!important;transition-duration:.2s!important}
@@ -302,7 +306,9 @@
                 <div class="row you gap" data-d="2500"><span class="sender" style="color:#ff7eb3">Zara</span><div class="bubble">can everyone just airdrop me theirs</div></div>
                 <div class="row me gap" data-d="3300"><div class="bubble">why does this always take forever</div></div>
                 <div class="row you gap" data-d="4100"><span class="sender" style="color:#a78bff">Maya</span><div class="bubble">we never end up posting anything 😭</div></div>
-                <div class="typing" id="typing" data-d="5000"><span></span><span></span><span></span></div>
+                <div class="row me gap" data-d="4800"><div class="bubble">someone always says this and then nothing gets posted lol</div></div>
+                <div class="row you gap" data-d="5500"><span class="sender" style="color:#ff7eb3">Zara</span><div class="bubble">ok we literally need an app for this</div></div>
+                <div class="typing" id="typing" data-d="6200"><span></span><span></span><span></span></div>
               </div>
               <div class="inputbar">
                 <div class="field">iMessage</div>
@@ -320,7 +326,7 @@
         <h2 class="reveal">Be first.</h2>
         <p class="sub reveal">Launching at <b>Georgia Tech</b> this fall.<br/>Join the waitlist.</p>
         <form id="wl-form" class="reveal" novalidate>
-          <input class="email-inp" id="email-inp" type="email" placeholder="your@email.com" autocomplete="email" required />
+          <input class="email-inp" id="email-inp" type="email" placeholder="your@email.com" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" required />
           <button class="submit" id="submit-btn" type="submit">
             <span class="label">Get early access</span>
             <svg class="check" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-11" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
