@@ -306,9 +306,7 @@
                 <div class="row you gap" data-d="2500"><span class="sender" style="color:#ff7eb3">Zara</span><div class="bubble">can everyone just airdrop me theirs</div></div>
                 <div class="row me gap" data-d="3300"><div class="bubble">why does this always take forever</div></div>
                 <div class="row you gap" data-d="4100"><span class="sender" style="color:#a78bff">Maya</span><div class="bubble">we never end up posting anything 😭</div></div>
-                <div class="row me gap" data-d="4800"><div class="bubble">someone always says this and then nothing gets posted lol</div></div>
-                <div class="row you gap" data-d="5500"><span class="sender" style="color:#ff7eb3">Zara</span><div class="bubble">ok we literally need an app for this</div></div>
-                <div class="typing" id="typing" data-d="6200"><span></span><span></span><span></span></div>
+                <div class="typing" id="typing" data-d="5000"><span></span><span></span><span></span></div>
               </div>
               <div class="inputbar">
                 <div class="field">iMessage</div>
@@ -413,8 +411,6 @@
       var d = parseInt(el.dataset.d || 0, 10);
       setTimeout(function() {
         el.classList.add('show');
-        var m = document.getElementById('msgs');
-        m.scrollTop = m.scrollHeight;
       }, d);
     });
   }
