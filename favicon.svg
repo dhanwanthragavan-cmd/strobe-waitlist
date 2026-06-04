@@ -1,13 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none">
   <style>
     svg { color: #111 }
-    .bg { display: none }
-    @media (prefers-color-scheme: dark) {
-      svg { color: #fff }
-      .bg { display: block }
-    }
+    @media (prefers-color-scheme: dark) { svg { color: #fff } }
   </style>
-  <rect class="bg" width="36" height="36" rx="7" fill="#050508"/>
   <rect x="1.5" y="9" width="33" height="24" rx="5" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
   <rect x="12" y="2" width="13" height="9" rx="2.5" stroke="currentColor" stroke-width="3"/>
   <circle cx="18" cy="21" r="7.5" stroke="currentColor" stroke-width="2.5"/>
