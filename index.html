@@ -366,6 +366,16 @@
   if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
   window.scrollTo(0, 0);
 
+  // Re-fetch favicon when color scheme changes so it switches automatically
+  (function() {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    function refreshFavicon() {
+      var link = document.querySelector('link[rel="icon"]');
+      if (link) link.href = 'favicon.svg?t=' + Date.now();
+    }
+    mq.addEventListener('change', refreshFavicon);
+  })();
+
   // ---- phone scaling: fit small screens ----
   function scalePhone() {
     var sizer = document.querySelector('.phone-sizer');
