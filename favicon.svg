@@ -1,11 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none">
-  <style>
-    .s{stroke:#0a0a0f}.f{fill:#0a0a0f}
-    @media(prefers-color-scheme:dark){.s{stroke:#fff}.f{fill:#fff}}
-  </style>
-  <rect class="s" x="1.5" y="9" width="33" height="24" rx="5" stroke-width="3" stroke-linejoin="round"/>
-  <rect class="s" x="12" y="2" width="13" height="9" rx="2.5" stroke-width="3"/>
-  <circle class="s" cx="18" cy="21" r="7.5" stroke-width="2.5"/>
-  <circle class="f" cx="18" cy="21" r="2.5"/>
-  <path class="f" d="M30.2 0.1 L31.1 2.5 L34.1 1.5 L31.7 4.1 L33.9 6.5 L30.8 5.4 L30.0 7.6 L29.1 5.2 L25.9 6.2 L28.3 4.0 L26.1 1.7 L29.3 2.7 Z"/>
+  <rect width="36" height="36" rx="7" fill="#0a0a0f"/>
+  <rect x="1.5" y="9" width="33" height="24" rx="5" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="12" y="2" width="13" height="9" rx="2.5" stroke="#fff" stroke-width="3"/>
+  <circle cx="18" cy="21" r="7.5" stroke="#fff" stroke-width="2.5"/>
+  <circle cx="18" cy="21" r="2.5" fill="#fff"/>
+  <path d="M30.2 0.1 L31.1 2.5 L34.1 1.5 L31.7 4.1 L33.9 6.5 L30.8 5.4 L30.0 7.6 L29.1 5.2 L25.9 6.2 L28.3 4.0 L26.1 1.7 L29.3 2.7 Z" fill="#fff"/>
 </svg>
