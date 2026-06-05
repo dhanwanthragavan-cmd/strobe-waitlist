@@ -171,30 +171,24 @@
   .wl h2{font-size:clamp(56px,15vw,170px);font-weight:900;letter-spacing:-.05em;line-height:.9;color:#fff}
   .wl .sub{margin-top:18px;font-size:clamp(14px,1.8vw,18px);color:var(--muted);line-height:1.5}
   .wl .sub b{color:#fff;font-weight:600}
-  form{margin:44px auto 0;max-width:480px;display:flex;align-items:center;gap:0;position:relative;
-       background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.11);
-       border-radius:18px;padding:6px;transition:border-color .35s,box-shadow .35s}
-  form::before,form::after{content:'';position:absolute;width:14px;height:14px;
-    border-color:var(--violet);border-style:solid;pointer-events:none;opacity:.65}
-  form::before{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px;border-radius:5px 0 0 0}
-  form::after{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0;border-radius:0 0 5px 0}
-  form:focus-within{border-color:rgba(167,139,255,.38);
-    box-shadow:0 0 0 4px rgba(124,92,255,.10),0 10px 40px rgba(124,92,255,.16)}
-  .email-inp{flex:1;height:52px;border-radius:12px;padding:0 18px;font-size:15px;
+  form{margin:44px auto 0;max-width:460px;display:flex;align-items:center;gap:0;position:relative;
+       background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);
+       border-radius:100px;padding:5px;transition:border-color .3s,box-shadow .3s}
+  form:focus-within{border-color:rgba(167,139,255,.45);
+    box-shadow:0 0 0 4px rgba(124,92,255,.10)}
+  .email-inp{flex:1;height:48px;border-radius:100px;padding:0 20px;font-size:15px;
              font-family:inherit;color:#fff;background:none;border:none;outline:none}
   .email-inp::placeholder{color:var(--faint)}
-  .email-inp:focus{border-color:transparent;box-shadow:none}
-  .submit{height:52px;padding:0 24px;border-radius:12px;border:0;cursor:pointer;
-          font-family:inherit;font-size:14.5px;font-weight:700;letter-spacing:-.01em;
-          color:#fff;background:linear-gradient(135deg,#7c5cff,#5aa8ff);white-space:nowrap;
+  .submit{height:48px;padding:0 24px;border-radius:100px;border:0;cursor:pointer;
+          font-family:inherit;font-size:14px;font-weight:600;letter-spacing:-.01em;
+          color:#fff;background:#7c5cff;white-space:nowrap;
           display:flex;align-items:center;justify-content:center;gap:8px;
-          box-shadow:0 4px 24px rgba(124,92,255,.4);flex-shrink:0;
-          transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,width .45s,padding .45s;
-          min-width:148px}
-  .submit:hover:not(:disabled){transform:scale(1.04);box-shadow:0 8px 32px rgba(124,92,255,.6)}
+          flex-shrink:0;transition:background .2s,transform .2s,width .4s,padding .4s;
+          min-width:136px}
+  .submit:hover:not(:disabled){background:#8d6fff;transform:scale(1.02)}
   .submit:active:not(:disabled){transform:scale(.97)}
-  .submit:disabled{opacity:.65;cursor:default}
-  .submit.done{width:52px;min-width:52px;padding:0;box-shadow:0 8px 32px rgba(124,92,255,.65)}
+  .submit:disabled{opacity:.6;cursor:default}
+  .submit.done{width:48px;min-width:48px;padding:0}
   .submit .check{display:none}
   form.sent .submit .label{display:none}
   form.sent .submit .check{display:block}
@@ -237,14 +231,12 @@
     .copy{margin-top:0}
     form{flex-direction:column;gap:10px;max-width:100%;
          background:none;border:none;padding:0;box-shadow:none}
-    form::before,form::after{display:none}
     form:focus-within{border:none;box-shadow:none}
-    .email-inp{width:100%;flex:none;font-size:16px;height:60px;border-radius:100px;padding:0 24px;
-               background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
-               border:1px solid var(--glass-brd)}
-    .email-inp:focus{border-color:rgba(167,139,255,.55);box-shadow:0 0 0 4px rgba(124,92,255,.14)}
-    .submit{width:100%;min-width:unset;height:60px;border-radius:100px;padding:0 28px;font-size:15px}
-    .submit.done{width:60px;min-width:60px;margin:0 auto}
+    .email-inp{width:100%;flex:none;font-size:16px;height:56px;border-radius:100px;padding:0 24px;
+               background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13)}
+    .email-inp:focus{border-color:rgba(167,139,255,.5);box-shadow:0 0 0 4px rgba(124,92,255,.12)}
+    .submit{width:100%;min-width:unset;height:56px;border-radius:100px;padding:0 28px;font-size:15px}
+    .submit.done{width:56px;min-width:56px;margin:0 auto}
   }
   @media(max-width:480px){
     .proof{flex-direction:column;gap:8px}
@@ -337,7 +329,7 @@
         <form id="wl-form" class="reveal" novalidate>
           <input class="email-inp" id="email-inp" type="email" placeholder="your@email.com" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" required />
           <button class="submit" id="submit-btn" type="submit">
-            <span class="label">Get early access</span>
+            <span class="label">Join waitlist</span>
             <svg class="check" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-11" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="sent-msg">
